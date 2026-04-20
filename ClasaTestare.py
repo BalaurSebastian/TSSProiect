@@ -1,4 +1,4 @@
-class StudentGrade:
+class NotareStudent:
     def __init__(self, nota_examen, nota_tema, prezenta):
         self.nota_examen = nota_examen        # 0 - 100
         self.nota_tema = nota_tema  # 0 - 100
