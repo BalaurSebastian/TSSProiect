@@ -16,8 +16,8 @@ class NotareStudent:
     def nota_finala(self):
         if not self.is_valid():
             raise ValueError("Invalid input")
-        return 0.6 * self.nota_examen + 0.3 * self.nota_tema + 0.1 * self.prezenta
-        # 60% examen, 30% tema, 10% prezenta
+        return 0.6 * self.nota_examen + 0.4 * self.nota_tema
+        # 60% examen, 40% tema
     def trecut(self):
         nota = self.nota_finala()
         if self.prezenta < 50:
@@ -29,7 +29,7 @@ class NotareStudent:
         
     def eligibil_bursa(self):
         nota = self.nota_finala()
-        if nota >= 85 and self.prezenta >= 90:
+        if nota >= 85 and self.prezenta >= 80:
             return True
         else:
             return False
