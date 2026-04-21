@@ -59,4 +59,17 @@ B12-(84, 85, 80)  - sub prag (nota) → False
 B13-(90, 85, 79)  - sub prag (prezenta) → False
 ```
 
+## Acoperirea la nivel de conditie + Circuite independente
 
+### Obiectiv:
+- acoperire la nivel de conditie pentru deciziile din metodele: is_valid, trecut, eligibil_bursa
+- acoperire pe circuite independente pentru fluxurile principale din: trecut si categorie_nota
+
+#### Conditii urmarite:
+- is_valid: fiecare conditie de forma x < 0 sau x > 100 evaluata pe True/False
+- trecut: prezenta < 50 si nota >= 50 evaluate pe True/False
+- eligibil_bursa: (nota >= 85) si (prezenta >= 80) evaluate pe True/False
+
+#### Circuite independente urmarite:
+- trecut: invalid input, prezenta sub prag, trecut, picat din nota
+- categorie_nota: Picat, Bine, Foarte bine, Excelent
