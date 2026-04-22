@@ -1,5 +1,16 @@
 # TSSProiect
 
+## Structura Proiectului
+
+Clasa "Notare Student" implementata in python.<br/>
+Primeste ca date de intrare 3 parametrii: nota_examen, nota_tema, prezenta.<br/>
+Contine urmatoarele metode:<br/>
+-"is_valid()" - verifica daca valorile de intrare sunt corecte (intre 0 si 100)<br/>
+-"nota_finala()" - calculeaza nota finala a studentului utilizand o medie ponderata (60% nota_examen, 40% nota_tema)<br/>
+-"trecut()" - determina daca studentul a promovat pe baza notei finale si a prezentei<br/>
+-"categorie_nota()" - clasifica nota finala in categorii (Picat, Bine, Foarte Bine, Excelent)<br/>
+-"eligibil_bursa()" - verifica daca studentul indeplineste conditiile de bursa (nota finala >= 85 , prezenta >= 80) <br/>
+
 ## Partitionare in clase de echivalenta (Equivalence partitioning)
 
 ### Intrari: nota_examen, nota_tema, prezenta
