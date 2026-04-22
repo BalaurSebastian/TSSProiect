@@ -138,6 +138,15 @@ class TestNotareStudent(unittest.TestCase):
     def test_valori_frontiera_B13(self):
         student = NotareStudent(85, 85, 79)
         self.assertFalse(student.eligibil_bursa())
+        
+    # Teste pentru omorarea mutantilor
+    def test_is_valid_prezenta_egal_0_returneaza_true(self): #Job 36
+        student = NotareStudent(50, 50, 0)
+        self.assertTrue(student.is_valid())
+        
+    def test_categorie_nota_nota_finala_egala_50_returneaza_bine(self): #Job 39
+        student = NotareStudent(50, 50, 50)
+        self.assertEqual(student.categorie_nota(), "Bine")
 
 
 # Acoperire la nivel de conditie
