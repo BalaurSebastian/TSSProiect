@@ -1,5 +1,12 @@
 # TSSProiect
 
+## Configuratia Hardware<br/>
+-TBD
+
+## Configuratia Software<br/>
+-Sistem de operare Windows<br/>
+-Python 3.13.x
+
 ## Structura Proiectului
 
 Clasa "Notare Student" implementata in python.<br/>
@@ -84,3 +91,7 @@ B13-(90, 85, 79)  - sub prag (prezenta) → False
 #### Circuite independente urmarite:
 - trecut: invalid input, prezenta sub prag, trecut, picat din nota
 - categorie_nota: Picat, Bine, Foarte bine, Excelent
+
+
+## Prezentare Powerpoint <br/>
+https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
