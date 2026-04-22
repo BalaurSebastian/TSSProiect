@@ -92,6 +92,25 @@ B13-(90, 85, 79)  - sub prag (prezenta) → False
 - trecut: invalid input, prezenta sub prag, trecut, picat din nota
 - categorie_nota: Picat, Bine, Foarte bine, Excelent
 
+## Testare prin mutatii
+
+Am folosit libraria cosmic-ray pentru a genera mutatiile. In continuare voi prezenta pasii pe care i-am urmat.
+
+* Dupa instalare, mai intai am creat fisierul de configuratie `ray-config.toml`
+
+* Urmatorul pas a fost initializarea sesiunii prin comanda: `cosmic-ray init ray-config.toml mutants.sqlite`
+
+* In continuare, am verificat ca testele trec pe codul nemutat. Am folosit comanda: `cosmic-ray --verbosity=INFO baseline ray-config.toml`
+
+* Mai departe, am pornit generarea mutantilor: `cosmic-ray exec ray-config.toml mutants.sqlite`
+
+* La final, am generat raportul HTML: `cr-html ray-config.sqlite > report.html`
+
+### Analiza raportului creat de generatorul de mutanti
+
+Generatorul a creat 166 de mutanti, dintre care 33 au supravietuit.
+
+Raport: https://github.com/BalaurSebastian/TSSProiect/blob/main/initial-report.html
 
 ## Prezentare Powerpoint <br/>
 https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
