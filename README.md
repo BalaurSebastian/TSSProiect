@@ -90,14 +90,7 @@ C4 = (nota_examen ∈ N2 ∪ N3 ∪ T2 ∪ T3 ∪ P3 ∪ P4)
 
 ---
 
-## Set de date de test (exemple)
-
-C1: (80, 80, 80) → True, True, "Foarte bine"
-C2: (80, 80, 40) → False
-C3: (40, 40, 80) → False
-C4: (-10, 80, 80) → ValueError
-
----
+## C: ( nota_examen, nota_tema, prezenta) -> (nota_finala, trecut, eligibil_bursa, categorie)</br>
 
 | Nota examen | Nota tema | Prezenta | Rezultat asteptat (evaluare_student) |
 |------------|----------|----------|----------------------------------------|
