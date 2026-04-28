@@ -198,7 +198,7 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 - trecut: invalid input, prezenta sub prag, trecut, picat din nota
 - categorie_nota: Picat, Bine, Foarte bine, Excelent
 
-## Testare prin mutatii
+## Testarea prin mutatii
 
 Am folosit libraria cosmic-ray pentru a genera mutatiile.
 
@@ -216,7 +216,7 @@ Avantajele librariei cosmic-ray fata de mutmut:
 
   Cosmic-ray poate genera un raport HTML care include detaliile salvate in baza de date, in timp ce mutmut necesita folosirea interfetei din terminal.
 
-Pasii pe care i-am urmat pentru a realiza testarea prin mutatii:
+Pasii pe care i-am urmat pentru a realiza testarea prin mutatii [1]:
 
 * Dupa instalare, mai intai am creat fisierul de configuratie `ray-config.toml`
 
@@ -289,3 +289,8 @@ def test_mutant_categorie_50(self): # Job 38
 ## Prezentare Powerpoint
 
 https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
+
+
+## Bibliografie
+
+[1] _Tutorial: The basics_, https://cosmic-ray.readthedocs.io/en/latest/tutorials/intro/index.html, Data ultimei accesari: 28 aprilie 2026
