@@ -107,6 +107,10 @@ C4 = (nota_examen ∈ N2 ∪ N3 ∪ T2 ∪ T3 ∪ P3 ∪ P4)
 | 84         | 85       | 80       | (83.6, True, False, "Foarte bine")     |
 | 90         | 85       | 79       | (87.0, True, False, "Foarte bine")     |
 
+
+<img width="593" height="496" alt="image" src="https://github.com/user-attachments/assets/725740a2-c9bd-46e9-8ee2-7479bce195d8" />
+
+
 # 2. Analiza valorilor de frontieră (Boundary Value Analysis)
 
 Analiza valorilor de frontieră este utilizată împreună cu partiționarea de echivalență și se concentrează pe testarea valorilor aflate la limitele claselor de echivalență, deoarece acestea sunt frecvent surse de erori.
@@ -182,6 +186,8 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 
 ---
 
+## Diagrama CFG
+![description](https://github.com/BalaurSebastian/TSSProiect/blob/main/Diagrama%20CFG.png)
   
 ## Acoperirea la nivel de conditie + Circuite independente
 
