@@ -290,11 +290,12 @@ class TestNotareStudent(unittest.TestCase):
         self.assertFalse(bursa)
 
 
-    def test_mutant_prezenta_0(self):
+    def test_mutant_prezenta_0(self): # Job 36
         s = NotareStudent(0,0,0)
-        _, _, _, _ = s.evaluare_student(50, 50, 0)  # trebuie sa NU arunce eroare
+        _, trecut, _, _ = s.evaluare_student(50, 50, 0)
+        self.assertEqual(trecut, False)
 
-    def test_mutant_categorie_50(self):
+    def test_mutant_categorie_50(self): # Job 38
         s = NotareStudent(0,0,0)
         _, _, _, categorie = s.evaluare_student(50, 50, 50)
         self.assertEqual(categorie, "Bine")
