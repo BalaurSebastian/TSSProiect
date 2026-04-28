@@ -200,23 +200,92 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 
 ## Testare prin mutatii
 
-Am folosit libraria cosmic-ray pentru a genera mutatiile. In continuare voi prezenta pasii pe care i-am urmat.
+Am folosit libraria cosmic-ray pentru a genera mutatiile.
+
+Avantajele librariei cosmic-ray fata de mutmut:
+
+* Executie configurabila
+
+  Cosmic-ray permite alegerea executorului de teste, in timp ce mutmut foloseste doar pytest. Acest lucru este in special important pentru acest proiect fiindca pentru testare folosim unittest.
+
+* Baza de date detaliata
+
+  Cosmic-ray salveaza mutatiile intr-o baza de date sqlite. Pentru fiecare mutatie salveaza si anumite specificatii care includ numele operatorilor care au fost inlocuiti. Mutmut salveaza mutantii sub forma de fisiere intr-un folder. Datorita bazei de date si a specificatiilor detaliate, mutantii generati de cosmic-ray sunt mai usor de vizualizat si filtrat.
+
+* Raport HTML
+
+  Cosmic-ray poate genera un raport HTML care include detaliile salvate in baza de date, in timp ce mutmut necesita folosirea interfetei din terminal.
+
+Pasii pe care i-am urmat pentru a realiza testarea prin mutatii:
 
 * Dupa instalare, mai intai am creat fisierul de configuratie `ray-config.toml`
 
-* Urmatorul pas a fost initializarea sesiunii prin comanda: `cosmic-ray init ray-config.toml mutants.sqlite`
+* Apoi am initializat sesiunea (am generat mutantii) prin comanda: `cosmic-ray init ray-config.toml mutants.sqlite`
 
-* In continuare, am verificat ca testele trec pe codul nemutat. Am folosit comanda: `cosmic-ray --verbosity=INFO baseline ray-config.toml`
+* In continuare, am verificat ca testele trec pe codul nemutat (baseline). Am folosit comanda: `cosmic-ray --verbosity=INFO baseline ray-config.toml`
 
-* Mai departe, am pornit generarea mutantilor: `cosmic-ray exec ray-config.toml mutants.sqlite`
+* Mai departe, am pornit executarea testelor pe mutanti: `cosmic-ray exec ray-config.toml mutants.sqlite`
 
 * La final, am generat raportul HTML: `cr-html ray-config.sqlite > report.html`
 
 ### Analiza raportului creat de generatorul de mutanti
 
-Generatorul a creat 166 de mutanti, dintre care 33 au supravietuit.
+Generatorul a creat 143 de mutanti, dintre care 24 au supravietuit.
 
-Raport: https://github.com/BalaurSebastian/TSSProiect/blob/main/initial-report.html
+Am adaugat inca doua teste pentru a omori 2 dintre mutanti. Dupa adaugarea acestor teste au mai fost omorati inca 4 mutanti, ramanand doar 18. Cele doua teste au tintit mutantii 36 si 38.
 
-## Prezentare Powerpoint <br/>
+#### Mutantul 36
+
+```python
+--- mutation diff ---
+--- aClasaTestare.py
++++ bClasaTestare.py
+@@ -10,7 +10,7 @@
+             raise ValueError("Invalid input")
+         if nota_tema < 0 or nota_tema > 100:
+             raise ValueError("Invalid input")
+-        if prezenta < 0 or prezenta > 100:
++        if prezenta == 0 or prezenta > 100:
+             raise ValueError("Invalid input")
+ 
+         # calcul
+```
+
+Testul adaugat
+
+```python
+def test_mutant_prezenta_0(self): # Job 36
+    s = NotareStudent(0,0,0)
+    _, trecut, _, _ = s.evaluare_student(50, 50, 0)
+    self.assertEqual(trecut, False)
+```
+
+#### Mutantul 38
+
+```python
+--- mutation diff ---
+--- aClasaTestare.py
++++ bClasaTestare.py
+@@ -31,7 +31,7 @@
+            eligibil_bursa = False
+
+        # categorie
+-        if nota_finala < 50:
++        if nota_finala == 50:
+            categorie = "Picat"
+        elif nota_finala < 70:
+            categorie = "Bine"
+```
+
+Testul adaugat
+
+```python
+def test_mutant_categorie_50(self): # Job 38
+    s = NotareStudent(0,0,0)
+    _, _, _, categorie = s.evaluare_student(50, 50, 50)
+    self.assertEqual(categorie, "Bine")
+```
+
+## Prezentare Powerpoint
+
 https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
