@@ -1,5 +1,7 @@
 # TSSProiect
 
+## Tema Aleasa: T1 - Testare Unitara in Python
+
 ## Configuratia Hardware<br/>
 -TBD
 
