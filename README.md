@@ -366,7 +366,7 @@ https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
 
 ### Prompt folosit: 
 
-```python
+```
 Asta este clasa mea in python:
 
 class NotareStudent:
