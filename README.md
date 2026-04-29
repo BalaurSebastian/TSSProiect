@@ -366,7 +366,7 @@ https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
 
 ### Prompt folosit: 
 
-```
+```python
 Asta este clasa mea in python:
 
 class NotareStudent:
@@ -414,7 +414,7 @@ Creeaza o serie de teste pentru a demonstra partitionare pe clase de echivalenta
 
 ### Rezultat prompt
 
-```
+```python
 import unittest
 from ClasaTestare import NotareStudent  # inlocuieste cu numele modulului tau
 
