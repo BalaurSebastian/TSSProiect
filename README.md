@@ -268,6 +268,9 @@ Pe baza grafului, fiecare circuit este acoperit de cel puțin un test:
 | P7 | Categorie "Excelent" | test_categorie_excelent |
 
 ---
+### Raport Acoperire 
+
+<img width="784" height="381" alt="image" src="https://github.com/user-attachments/assets/ff3ce7e3-d221-4a14-aada-f59ecac3adf0" />
 
 ## Testarea prin mutatii
 
@@ -545,7 +548,15 @@ if __name__ == "__main__":
 
 ### Raport Coverage
 
+<img width="810" height="387" alt="image" src="https://github.com/user-attachments/assets/40117aa0-def3-49da-ade0-eb69815b7246" />
+
 ### Raport Mutanti
+
+### Observatii
+
+ChatGPT a creat 19 teste in total, 6 pentru clase de echivalenta, 3 pentru acoperire la nivel de instructiune si decizie, 3 la nivel de conditie si 3 pentru omorare de mutanti. Acestea au rulat complet fara probleme.
+
+La Acoperire si Mutanti testele create de AI au obtinut rezultate identice cu cele create de noi cu un numar redus de teste, insa la clase de echivalenta si valori de frontiera, nu a reprezentat toate valorile.
 
 ## Bibliografie
 
