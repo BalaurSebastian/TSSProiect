@@ -9,6 +9,9 @@
 
 ## Structura Proiectului
 
+<img width="638" height="841" alt="image" src="https://github.com/user-attachments/assets/ed407795-ab70-4367-aeaa-46a445b9f5e8" />
+
+
 ## 1. Partitionare in clase de echivalenta (Equivalence Partitioning)
 
 ### Intrari: nota_examen, nota_tema, prezenta
@@ -185,6 +188,7 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 | 90          | 85        | 79       | (87.0, True, False, "Foarte bine") |
 
 ---
+<img width="517" height="583" alt="image" src="https://github.com/user-attachments/assets/065054b7-4513-495f-aa18-bd8518596b61" />
 
 ## Diagrama CFG
 ![description](https://github.com/BalaurSebastian/TSSProiect/blob/main/Diagrama%20CFG.png)
@@ -296,6 +300,191 @@ def test_mutant_categorie_50(self): # Job 38
 
 https://github.com/BalaurSebastian/TSSProiect/blob/main/PrezentareProiect.pptx
 
+
+## Raport folosire AI pentru creare teste
+
+### Prompt folosit: 
+
+```
+Asta este clasa mea in python:
+
+class NotareStudent:
+
+def __init__(self, nota_examen, nota_tema, prezenta):
+     self.nota_examen = nota_examen # 0 - 100
+     self.nota_tema = nota_tema # 0 - 100
+     self.prezenta = prezenta # 0 - 100 (%)
+
+def evaluare_student(self, nota_examen, nota_tema, prezenta):
+      # validare
+     if nota_examen < 0 or nota_examen > 100:
+          raise ValueError("Invalid input")
+     if nota_tema < 0 or nota_tema > 100:
+          raise ValueError("Invalid input")
+     if prezenta < 0 or prezenta > 100:
+          raise ValueError("Invalid input")
+     # calcul
+     nota_finala = 0.6 * nota_examen + 0.4 * nota_tema
+     # trecut
+     if prezenta < 50:
+          trecut = False
+     elif nota_finala >= 50:
+          trecut = True
+     else:
+          trecut = False
+     # bursa
+     if nota_finala >= 85 and prezenta >= 80:
+          eligibil_bursa = True
+     else:
+          eligibil_bursa = False
+     # categorie
+     if nota_finala < 50:
+          categorie = "Picat"
+     elif nota_finala < 70:
+          categorie = "Bine"
+     elif nota_finala < 90:
+          categorie = "Foarte bine"
+     else:
+          categorie = "Excelent"
+     return nota_finala, trecut, eligibil_bursa, categorie
+
+Creeaza o serie de teste pentru a demonstra partitionare pe clase de echivalenta, acoperire la nivel de instructiune, decizie, conditie, circuite independente si omorare de mutanti. Pune doar testele intr-un singur bloc usor copiabil.
+```
+
+### Rezultat prompt
+
+```
+import unittest
+from ClasaTestare import NotareStudent  # inlocuieste cu numele modulului tau
+
+
+class TestNotareStudent(unittest.TestCase):
+
+    # -------------------------
+    # Clase de echivalenta
+    # -------------------------
+    def test_valori_valide_tipice(self):
+        s = NotareStudent(80, 70, 90)
+        rezultat = s.evaluare_student(80, 70, 90)
+        self.assertAlmostEqual(rezultat[0], 0.6*80 + 0.4*70)
+        self.assertTrue(rezultat[1])
+
+    def test_valori_limita_inferioara(self):
+        s = NotareStudent(0, 0, 0)
+        rezultat = s.evaluare_student(0, 0, 0)
+        self.assertEqual(rezultat[0], 0)
+        self.assertFalse(rezultat[1])
+
+    def test_valori_limita_superioara(self):
+        s = NotareStudent(100, 100, 100)
+        rezultat = s.evaluare_student(100, 100, 100)
+        self.assertEqual(rezultat[0], 100)
+        self.assertTrue(rezultat[1])
+
+    def test_input_invalid_examen(self):
+        s = NotareStudent(0, 0, 0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(-1, 50, 50)
+
+    def test_input_invalid_tema(self):
+        s = NotareStudent(0, 0, 0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, 101, 50)
+
+    def test_input_invalid_prezenta(self):
+        s = NotareStudent(0, 0, 0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, 50, 200)
+
+    # -------------------------
+    # Acoperire instructiuni & decizii
+    # -------------------------
+    def test_prezenta_sub_50(self):
+        s = NotareStudent(80, 80, 40)
+        rezultat = s.evaluare_student(80, 80, 40)
+        self.assertFalse(rezultat[1])
+
+    def test_nota_sub_50(self):
+        s = NotareStudent(40, 40, 80)
+        rezultat = s.evaluare_student(40, 40, 80)
+        self.assertFalse(rezultat[1])
+
+    def test_nota_peste_50(self):
+        s = NotareStudent(60, 60, 80)
+        rezultat = s.evaluare_student(60, 60, 80)
+        self.assertTrue(rezultat[1])
+
+    # -------------------------
+    # Acoperire conditii
+    # -------------------------
+    def test_conditie_bursa_adevarat(self):
+        s = NotareStudent(90, 90, 90)
+        rezultat = s.evaluare_student(90, 90, 90)
+        self.assertTrue(rezultat[2])
+
+    def test_conditie_bursa_fals_nota(self):
+        s = NotareStudent(80, 80, 90)
+        rezultat = s.evaluare_student(80, 80, 90)
+        self.assertFalse(rezultat[2])
+
+    def test_conditie_bursa_fals_prezenta(self):
+        s = NotareStudent(90, 90, 70)
+        rezultat = s.evaluare_student(90, 90, 70)
+        self.assertFalse(rezultat[2])
+
+    # -------------------------
+    # Categorii (circuite independente)
+    # -------------------------
+    def test_categorie_picat(self):
+        s = NotareStudent(40, 40, 80)
+        rezultat = s.evaluare_student(40, 40, 80)
+        self.assertEqual(rezultat[3], "Picat")
+
+    def test_categorie_bine(self):
+        s = NotareStudent(60, 60, 80)
+        rezultat = s.evaluare_student(60, 60, 80)
+        self.assertEqual(rezultat[3], "Bine")
+
+    def test_categorie_foarte_bine(self):
+        s = NotareStudent(80, 80, 80)
+        rezultat = s.evaluare_student(80, 80, 80)
+        self.assertEqual(rezultat[3], "Foarte bine")
+
+    def test_categorie_excelent(self):
+        s = NotareStudent(95, 95, 90)
+        rezultat = s.evaluare_student(95, 95, 90)
+        self.assertEqual(rezultat[3], "Excelent")
+
+    # -------------------------
+    # Mutanti (ex: schimbare operatori, praguri)
+    # -------------------------
+    def test_prag_50_exact(self):
+        s = NotareStudent(50, 50, 80)
+        rezultat = s.evaluare_student(50, 50, 80)
+        self.assertTrue(rezultat[1])
+
+    def test_prag_85_exact_bursa(self):
+        s = NotareStudent(85, 85, 80)
+        rezultat = s.evaluare_student(85, 85, 80)
+        self.assertTrue(rezultat[2])
+
+    def test_prag_80_prezenta_bursa(self):
+        s = NotareStudent(90, 90, 80)
+        rezultat = s.evaluare_student(90, 90, 80)
+        self.assertTrue(rezultat[2])
+
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+### Rulare teste
+
+<img width="492" height="179" alt="image" src="https://github.com/user-attachments/assets/6d6d6a33-7761-45bc-823f-177e432f7936" />
+
+### Raport Coverage
+
+### Raport Mutanti
 
 ## Bibliografie
 
