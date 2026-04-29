@@ -306,7 +306,13 @@ Pasii pe care i-am urmat pentru a realiza testarea prin mutatii [1]:
 
 Generatorul a creat 143 de mutanti, dintre care 24 au supravietuit.
 
+<img width="399" height="246" alt="image" src="https://github.com/user-attachments/assets/424420be-ac1a-4cf4-9e80-459ecc0f5490" />
+
+---
+
 Am adaugat inca doua teste pentru a omori 2 dintre mutanti. Dupa adaugarea acestor teste au mai fost omorati inca 4 mutanti, ramanand doar 18. Cele doua teste au tintit mutantii 36 si 38.
+
+<img width="402" height="246" alt="image" src="https://github.com/user-attachments/assets/98245df5-b4be-4810-81a1-2fbeda642acf" />
 
 #### Mutantul 36
 
@@ -552,14 +558,22 @@ if __name__ == "__main__":
 
 ### Raport Mutanti
 
-<img width="473" height="289" alt="image" src="https://github.com/user-attachments/assets/41d8f800-d816-4726-b933-dff5d95ea8e7" />
+Fara teste suplimentare dedicate omorarii mutantilor:
+
+<img width="399" height="249" alt="image" src="https://github.com/user-attachments/assets/762f1dd2-2316-4a03-8e8c-8429fb27d412" />
+
+---
+
+Cu teste suplimentare dedicate omorarii mutantilor:
+
+<img width="396" height="237" alt="image" src="https://github.com/user-attachments/assets/3bbc8ce7-d540-4a67-8585-c3b8e28bdfe7" />
 
 
 ### Observatii
 
 ChatGPT a creat 19 teste in total, 6 pentru clase de echivalenta, 3 pentru acoperire la nivel de instructiune si decizie, 3 la nivel de conditie si 3 pentru omorare de mutanti. Acestea au rulat complet fara probleme.
 
-La Acoperire si Mutanti testele create de AI au obtinut rezultate identice cu cele create de noi cu un numar redus de teste, insa la clase de echivalenta si valori de frontiera, nu a reprezentat toate valorile.
+La Acoperire si Mutanti testele create de AI au obtinut rezultate aproape identice cu cele create de noi. In cazul mutantilor, testele generate de AI au omorat cu un mutant mai putin. Insa la clase de echivalenta si valori de frontiera, nu a reprezentat toate valorile.
 
 ## Bibliografie
 
