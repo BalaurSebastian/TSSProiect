@@ -552,6 +552,9 @@ if __name__ == "__main__":
 
 ### Raport Mutanti
 
+<img width="473" height="289" alt="image" src="https://github.com/user-attachments/assets/41d8f800-d816-4726-b933-dff5d95ea8e7" />
+
+
 ### Observatii
 
 ChatGPT a creat 19 teste in total, 6 pentru clase de echivalenta, 3 pentru acoperire la nivel de instructiune si decizie, 3 la nivel de conditie si 3 pentru omorare de mutanti. Acestea au rulat complet fara probleme.
