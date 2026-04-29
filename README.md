@@ -193,20 +193,81 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 ## Diagrama CFG
 ![description](https://github.com/BalaurSebastian/TSSProiect/blob/main/Diagrama%20CFG.png)
   
-## Acoperirea la nivel de conditie + Circuite independente
+## Acoperire structurală (Structural Coverage)
 
-### Obiectiv:
-- acoperire la nivel de conditie pentru deciziile din metodele: is_valid, trecut, eligibil_bursa
-- acoperire pe circuite independente pentru fluxurile principale din: trecut si categorie_nota
+### Tipuri de acoperire:
+- statement coverage
+- decision coverage
+- condition coverage
+- circuite independente
 
-#### Conditii urmarite:
-- is_valid: fiecare conditie de forma x < 0 sau x > 100 evaluata pe True/False
-- trecut: prezenta < 50 si nota >= 50 evaluate pe True/False
-- eligibil_bursa: (nota >= 85) si (prezenta >= 80) evaluate pe True/False
+---
 
-#### Circuite independente urmarite:
-- trecut: invalid input, prezenta sub prag, trecut, picat din nota
-- categorie_nota: Picat, Bine, Foarte bine, Excelent
+### 1. Statement coverage (acoperire la nivel de instrucțiune)
+
+Fiecare instrucțiune este executată macar o data (fiecare nod din graf este parcurs macar odata):
+
+| Test | Input | Acoperă |
+|------|------|--------|
+| test_circuit_trecut | (70,70,80) | flux complet valid |
+| test_circuit_prezenta_mica | (80,80,49) | ramura prezenta < 50 |
+| test_circuit_picat_nota | (40,40,80) | ramura nota < 50 |
+| test_categorie_excelent | (95,95,80) | categorie finală |
+| test_categorie_bine | (60,60,80) | categorie medie |
+| test_categorie_foarte_bine | (80,80,80) | categorie intermediară |
+| test_circuit_invalid | (-1,80,80) | excepție |
+
+
+---
+
+### 2. Decision coverage (acoperire la nivel de decizie)
+
+Fiecare decizie (if) este evaluată atât pe True cât și pe False (fiecare ramura a grafului este parcursa macar o data):
+
+| Decizie | True (test) | False (test) |
+|--------|------------|-------------|
+| validare input | test_circuit_invalid | restul testelor |
+| prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
+| nota >= 50 | test_circuit_trecut | test_circuit_picat_nota |
+| nota >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| nota < 50 | test_circuit_picat_nota | test_categorie_bine |
+| nota < 70 | test_categorie_bine | test_categorie_foarte_bine |
+| nota < 90 | test_categorie_foarte_bine | test_categorie_excelent |
+
+
+---
+
+### 3. Condition coverage (acoperire la nivel de condiție)
+
+Fiecare condiție individuala este evaluată pe True și False:
+
+| Condiție | True (test) | False (test) |
+|----------|------------|-------------|
+| nota_tema < 0 | test_conditie_invalid_nota_tema | test_circuit_trecut |
+| prezenta > 100 | test_conditie_invalid_prezenta | test_circuit_trecut |
+| prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
+| nota >= 50 | test_circuit_trecut | test_circuit_picat_nota |
+| nota >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+
+---
+
+### 4. Circuite independente
+
+Pe baza grafului, fiecare circuit este acoperit de cel puțin un test:
+
+| Circuit | Descriere | Test |
+|--------|----------|------|
+| P1 | Input invalid → excepție | test_circuit_invalid |
+| P2 | Prezenta < 50 → picat | test_circuit_prezenta_mica |
+| P3 | Prezenta OK, nota < 50 → picat | test_circuit_picat_nota |
+| P4 | Student trecut | test_circuit_trecut |
+| P5 | Categorie "Bine" | test_categorie_bine |
+| P6 | Categorie "Foarte bine" | test_categorie_foarte_bine |
+| P7 | Categorie "Excelent" | test_categorie_excelent |
+
+---
 
 ## Testarea prin mutatii
 
