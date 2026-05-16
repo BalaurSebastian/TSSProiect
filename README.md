@@ -207,11 +207,11 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 
 ### 1. Statement coverage (acoperire la nivel de instrucțiune)
 
-Fiecare instrucțiune este executată macar o data (fiecare nod din graf este parcurs macar odata):
+Fiecare instrucțiune, este executată cel puțin o dată (fiecare nod din graf este parcurs cel puțin o dată).
 
 | Test | Input | Acoperă |
 |------|------|--------|
-| test_circuit_trecut | (70,70,80) | flux complet valid |
+| test_circuit_trecut | (70,70,80) | flux complet valid + executie while |
 | test_circuit_prezenta_mica | (80,80,49) | ramura prezenta < 50 |
 | test_circuit_picat_nota | (40,40,80) | ramura nota < 50 |
 | test_categorie_excelent | (95,95,80) | categorie finală |
@@ -219,38 +219,41 @@ Fiecare instrucțiune este executată macar o data (fiecare nod din graf este pa
 | test_categorie_foarte_bine | (80,80,80) | categorie intermediară |
 | test_circuit_invalid | (-1,80,80) | excepție |
 
-
 ---
 
 ### 2. Decision coverage (acoperire la nivel de decizie)
 
-Fiecare decizie (if) este evaluată atât pe True cât și pe False (fiecare ramura a grafului este parcursa macar o data):
+Fiecare decizie (`if` / `while`) este evaluată atât pe `True` cât și pe `False` (fiecare ramură a grafului este parcursă cel puțin o dată).
 
 | Decizie | True (test) | False (test) |
 |--------|------------|-------------|
-| validare input | test_circuit_invalid | restul testelor |
+| nota_examen < 0 sau >100 | test_circuit_invalid | restul testelor |
+| nota_tema < 0 sau >100 | test_conditie_invalid_nota_tema | test_circuit_trecut |
+| prezenta < 0 sau >100 | test_conditie_invalid_prezenta | test_circuit_trecut |
+| i < 1 (while) | toate testele valide | ieșirea din while |
 | prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
-| nota >= 50 | test_circuit_trecut | test_circuit_picat_nota |
-| nota >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| nota_finala >= 50 | test_circuit_trecut | test_circuit_picat_nota |
+| nota_finala >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
 | prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
-| nota < 50 | test_circuit_picat_nota | test_categorie_bine |
-| nota < 70 | test_categorie_bine | test_categorie_foarte_bine |
-| nota < 90 | test_categorie_foarte_bine | test_categorie_excelent |
-
+| nota_finala < 50 | test_circuit_picat_nota | test_categorie_bine |
+| nota_finala < 70 | test_categorie_bine | test_categorie_foarte_bine |
+| nota_finala < 90 | test_categorie_foarte_bine | test_categorie_excelent |
 
 ---
 
 ### 3. Condition coverage (acoperire la nivel de condiție)
 
-Fiecare condiție individuala este evaluată pe True și False:
+Fiecare condiție individuală este evaluată atât pe `True` cât și pe `False`.
 
 | Condiție | True (test) | False (test) |
 |----------|------------|-------------|
+| nota_examen < 0 | test_circuit_invalid | test_circuit_trecut |
 | nota_tema < 0 | test_conditie_invalid_nota_tema | test_circuit_trecut |
 | prezenta > 100 | test_conditie_invalid_prezenta | test_circuit_trecut |
+| i < 1 | toate testele valide | ieșirea din while |
 | prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
-| nota >= 50 | test_circuit_trecut | test_circuit_picat_nota |
-| nota >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| nota_finala >= 50 | test_circuit_trecut | test_circuit_picat_nota |
+| nota_finala >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
 | prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
 
 ---
@@ -261,13 +264,14 @@ Pe baza grafului, fiecare circuit este acoperit de cel puțin un test:
 
 | Circuit | Descriere | Test |
 |--------|----------|------|
-| P1 | Input invalid → excepție | test_circuit_invalid |
-| P2 | Prezenta < 50 → picat | test_circuit_prezenta_mica |
-| P3 | Prezenta OK, nota < 50 → picat | test_circuit_picat_nota |
-| P4 | Student trecut | test_circuit_trecut |
-| P5 | Categorie "Bine" | test_categorie_bine |
-| P6 | Categorie "Foarte bine" | test_categorie_foarte_bine |
-| P7 | Categorie "Excelent" | test_categorie_excelent |
+| P1 | input invalid → excepție | test_circuit_invalid |
+| P2 | execuție while + prezenta < 50 → picat | test_circuit_prezenta_mica |
+| P3 | execuție while + nota < 50 → picat | test_circuit_picat_nota |
+| P4 | execuție while + student trecut | test_circuit_trecut |
+| P5 | categorie "Bine" | test_categorie_bine |
+| P6 | categorie "Foarte bine" | test_categorie_foarte_bine |
+| P7 | categorie "Excelent" | test_categorie_excelent |
+| P8 | muchia de revenire a buclei while | toate testele valide |
 
 ---
 ### Raport Acoperire 
