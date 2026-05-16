@@ -203,6 +203,37 @@ from ClasaTestare import NotareStudent
 
 class TestNotareStudent(unittest.TestCase):
 
+    def test_conditie_invalid_nota_tema(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, -1, 50)
+
+    def test_conditie_invalid_prezenta(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, 50, 101)
+
+    def test_conditie_trecut_nota_sub_prag(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(40, 40, 50)
+        self.assertFalse(trecut)
+
+    def test_conditie_bursa_nota_sub_prag(self):
+        s = NotareStudent(0,0,0)
+        _, _, bursa, _ = s.evaluare_student(84, 85, 80)
+        self.assertFalse(bursa)
+
+    # while - conditie falsa pentru toate iteratiile
+    def test_conditie_while_toate_valorile_valide(self):
+        s = NotareStudent(0,0,0)
+
+        nota, trecut, bursa, categorie = s.evaluare_student(70, 80, 90)
+
+        self.assertEqual(nota, 74.0)
+        self.assertTrue(trecut)
+        self.assertFalse(bursa)
+        self.assertEqual(categorie, "Foarte bine")
+
     def test_clase_echivalenta_C1(self):
         s = NotareStudent(0,0,0)
         _, trecut, _, _ = s.evaluare_student(80, 80, 80)
@@ -326,6 +357,18 @@ class TestConditie(unittest.TestCase):
 
 class TestCircuiteIndependente(unittest.TestCase):
 
+    def test_circuit_while_prima_valoare_invalida(self):
+        s = NotareStudent(0,0,0)
+
+        with self.assertRaises(ValueError):
+            s.evaluare_student(-1, 80, 80)
+
+    def test_circuit_while_ultima_valoare_invalida(self):
+        s = NotareStudent(0,0,0)
+
+        with self.assertRaises(ValueError):
+            s.evaluare_student(80, 80, 101)
+            
     def test_circuit_invalid(self):
         s = NotareStudent(0,0,0)
         with self.assertRaises(ValueError):
@@ -361,6 +404,3 @@ class TestCircuiteIndependente(unittest.TestCase):
         _, _, _, categorie = s.evaluare_student(95, 95, 80)
         self.assertEqual(categorie, "Excelent")
 
-
-if __name__ == '__main__':
-    unittest.main()

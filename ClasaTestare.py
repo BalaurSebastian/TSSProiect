@@ -5,13 +5,16 @@ class NotareStudent:
         self.prezenta = prezenta        # 0 - 100 (%)
 
     def evaluare_student(self, nota_examen, nota_tema, prezenta):
+        
+        valori = [nota_examen, nota_tema, prezenta]
+        i = 0
+        
         # validare
-        if nota_examen < 0 or nota_examen > 100:
-            raise ValueError("Invalid input")
-        if nota_tema < 0 or nota_tema > 100:
-            raise ValueError("Invalid input")
-        if prezenta < 0 or prezenta > 100:
-            raise ValueError("Invalid input")
+        while i < len(valori):
+            if valori[i] < 0 or valori[i] > 100:
+                raise ValueError("Invalid input")
+            i += 1
+
 
         # calcul
         nota_finala = 0.6 * nota_examen + 0.4 * nota_tema
