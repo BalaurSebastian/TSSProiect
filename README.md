@@ -214,9 +214,13 @@ Fiecare instrucțiune, este executată cel puțin o dată (fiecare nod din graf 
 | test_circuit_trecut | (70,70,80) | flux complet valid + executie while |
 | test_circuit_prezenta_mica | (80,80,49) | ramura prezenta < 50 |
 | test_circuit_picat_nota | (40,40,80) | ramura nota < 50 |
-| test_categorie_excelent | (95,95,80) | categorie finală |
-| test_categorie_bine | (60,60,80) | categorie medie |
-| test_categorie_foarte_bine | (80,80,80) | categorie intermediară |
+| test_circuit_trecut | (70, 70, 80) | ramura nota >= 50 |
+| test_conditie_bursa_prezenta_sub_prag | (90, 90, 79) | ramura prezenta < 80 |
+| test_conditie_bursa_prezenta_peste_prag | (90, 90, 90) | ramura prezenta >= 80 |
+| test_circuit_picat_nota | (40,40,80) | categoria 'picat' |
+| test_categorie_bine | (60,60,80) | categoria 'bine' |
+| test_categorie_foarte_bine | (80,80,80) | categoria 'foarte bine' |
+| test_categorie_excelent | (95,95,80) | categoria 'excelent' |
 | test_circuit_invalid | (-1,80,80) | excepție |
 
 ---
@@ -227,17 +231,17 @@ Fiecare decizie (`if` / `while`) este evaluată atât pe `True` cât și pe `Fal
 
 | Decizie | True (test) | False (test) |
 |--------|------------|-------------|
-| nota_examen < 0 sau >100 | test_circuit_invalid | restul testelor |
+| nota_examen < 0 sau >100 | test_circuit_while_nota_examen_invalida | test_circuit_trecut |
 | nota_tema < 0 sau >100 | test_conditie_invalid_nota_tema | test_circuit_trecut |
 | prezenta < 0 sau >100 | test_conditie_invalid_prezenta | test_circuit_trecut |
 | i < 1 (while) | toate testele valide | ieșirea din while |
 | prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
 | nota_finala >= 50 | test_circuit_trecut | test_circuit_picat_nota |
 | nota_finala >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
-| prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
-| nota_finala < 50 | test_circuit_picat_nota | test_categorie_bine |
-| nota_finala < 70 | test_categorie_bine | test_categorie_foarte_bine |
-| nota_finala < 90 | test_categorie_foarte_bine | test_categorie_excelent |
+| prezenta >= 80 | test_conditie_eligibil_bursa | test_conditie_bursa_prezenta_sub_prag |
+| nota_finala >= 50 | test_categorie_bine | test_circuit_picat_nota |
+| nota_finala >= 70 | test_categorie_foarte_bine | test_categorie_bine |
+| nota_finala >= 90 | test_categorie_excelent | test_categorie_foarte_bine |
 
 ---
 
@@ -247,14 +251,17 @@ Fiecare condiție individuală este evaluată atât pe `True` cât și pe `False
 
 | Condiție | True (test) | False (test) |
 |----------|------------|-------------|
-| nota_examen < 0 | test_circuit_invalid | test_circuit_trecut |
-| nota_tema < 0 | test_conditie_invalid_nota_tema | test_circuit_trecut |
-| prezenta > 100 | test_conditie_invalid_prezenta | test_circuit_trecut |
+| nota_examen < 0 | test_circuit_while_nota_examen_invalida | test_circuit_trecut |
+| nota_tema < 0 | test_circuit_while_nota_tema_invalida | test_circuit_trecut |
+| prezenta > 100 | test_circuit_while_prezenta_invalida | test_circuit_trecut |
 | i < 1 | toate testele valide | ieșirea din while |
 | prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
-| nota_finala >= 50 | test_circuit_trecut | test_circuit_picat_nota |
-| nota_finala >= 85 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
-| prezenta >= 80 | test_categorie_excelent | test_conditie_bursa_nota_sub_prag |
+| nota_finala >= 50 | test_circuit_trecut | test_circuit_trecut |
+| nota_finala >= 85 | test_conditie_eligibil_bursa | test_conditie_bursa_nota_sub_prag |
+| prezenta >= 80 | test_conditie_eligibil_bursa | test_conditie_bursa_prezenta_sub_prag |
+| nota_finala >= 50 | test_categorie_bine | test_circuit_picat_nota |
+| nota_finala >= 70 | test_categorie_foarte_bine | test_categorie_bine |
+| nota_finala >= 90 | test_categorie_excelent | test_categorie_foarte_bine |
 
 ---
 
