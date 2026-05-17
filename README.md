@@ -192,7 +192,7 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 ---
 <img width="517" height="583" alt="image" src="https://github.com/user-attachments/assets/065054b7-4513-495f-aa18-bd8518596b61" />
 
-## Diagrama CFG
+## Graful Orientat al programlui
 
 <img width="547" height="682" alt="image" src="https://github.com/user-attachments/assets/fb3538c1-fe9b-4deb-8ae9-7dac27531583" />
   
