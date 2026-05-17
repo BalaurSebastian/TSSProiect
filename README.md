@@ -9,9 +9,11 @@
 -Sistem de operare Windows<br/>
 -Python 3.13.x
 
+## Descriere
+Programul implementeaza un sistem de evaluare al unui student pe baza mai multor date de intrare, nota pe care studentul a luat-o la examen, nota pe care a luat-o la tema si numarul de ore la care acesta a fost prezent. Dupa validarea datelor si realizarea mai multor calcule, programul afiseaza nota finala, decide daca studentul a trecut sau nu, daca este eligibil pentru bursa sau nu si in ce categorie i se incadreaza nota, de la Picat la Excelent.
 ## Structura Proiectului
 
-<img width="638" height="841" alt="image" src="https://github.com/user-attachments/assets/ed407795-ab70-4367-aeaa-46a445b9f5e8" />
+<img width="642" height="906" alt="image" src="https://github.com/user-attachments/assets/333c2c73-1978-40e5-b760-2ca2f6c7f2e1" />
 
 
 ## 1. Partitionare in clase de echivalenta (Equivalence Partitioning)
