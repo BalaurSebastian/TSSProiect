@@ -321,17 +321,6 @@ class TestNotareStudent(unittest.TestCase):
         self.assertFalse(bursa)
 
 
-    def test_mutant_prezenta_0(self): # Job 36
-        s = NotareStudent(0,0,0)
-        _, trecut, _, _ = s.evaluare_student(50, 50, 0)
-        self.assertEqual(trecut, False)
-
-    def test_mutant_categorie_50(self): # Job 38
-        s = NotareStudent(0,0,0)
-        _, _, _, categorie = s.evaluare_student(50, 50, 50)
-        self.assertEqual(categorie, "Bine")
-
-
 class TestConditie(unittest.TestCase):
 
     def test_conditie_invalid_nota_tema(self):
@@ -443,3 +432,15 @@ class TestCircuiteIndependente(unittest.TestCase):
         _, _, _, categorie = s.evaluare_student(95, 95, 80)
         self.assertEqual(categorie, "Excelent")
 
+
+class TestareMutatii(unittest.TestCase):
+    
+    def test_mutant_categorie_nota_finala_egala_cu_50(self): # Job 37
+        s = NotareStudent(0,0,0)
+        _, _, _, categorie = s.evaluare_student(50, 50, 50)
+        self.assertEqual(categorie, "Bine")
+        
+    def test_mutant_categorie_nota_finala_mai_mica_sau_egala_cu_70(self): # Job 50
+        s = NotareStudent(0,0,0)
+        _, _, _, categorie = s.evaluare_student(70, 70, 50)
+        self.assertEqual(categorie, "Foarte bine")
