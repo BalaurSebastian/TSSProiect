@@ -194,7 +194,7 @@ B13 (90, 85, 79)   → (87.0, True, False, "Foarte bine")
 
 ## Graful Orientat al programlui
 
-<img width="585" height="1540" alt="Copy of Blank diagram (1)" src="https://github.com/user-attachments/assets/fd5d0224-6257-4fec-a9d9-1afa62ee0a5b" />
+<img width="585" height="1540" alt="Copy of Blank diagram (2)" src="https://github.com/user-attachments/assets/6363b961-b13a-4f7b-a50f-2b0a1000230a" />
   
 ## Acoperire structurală (Structural Coverage)
 
