@@ -201,135 +201,135 @@
 import unittest
 from ClasaTestare import NotareStudent
 
-# class TestNotareStudent(unittest.TestCase):
+class TestNotareStudent(unittest.TestCase):
 
-#     def test_conditie_invalid_nota_tema(self):
-#         s = NotareStudent(0,0,0)
-#         with self.assertRaises(ValueError):
-#             s.evaluare_student(50, -1, 50)
+    def test_conditie_invalid_nota_tema(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, -1, 50)
 
-#     def test_conditie_invalid_prezenta(self):
-#         s = NotareStudent(0,0,0)
-#         with self.assertRaises(ValueError):
-#             s.evaluare_student(50, 50, 101)
+    def test_conditie_invalid_prezenta(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(50, 50, 101)
 
-#     def test_conditie_trecut_nota_sub_prag(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(40, 40, 50)
-#         self.assertFalse(trecut)
+    def test_conditie_trecut_nota_sub_prag(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(40, 40, 50)
+        self.assertFalse(trecut)
 
-#     def test_conditie_bursa_nota_sub_prag(self):
-#         s = NotareStudent(0,0,0)
-#         _, _, bursa, _ = s.evaluare_student(84, 85, 80)
-#         self.assertFalse(bursa)
+    def test_conditie_bursa_nota_sub_prag(self):
+        s = NotareStudent(0,0,0)
+        _, _, bursa, _ = s.evaluare_student(84, 85, 80)
+        self.assertFalse(bursa)
 
-#     # while - conditie falsa pentru toate iteratiile
-#     def test_conditie_while_toate_valorile_valide(self):
-#         s = NotareStudent(0,0,0)
+    # while - conditie falsa pentru toate iteratiile
+    def test_conditie_while_toate_valorile_valide(self):
+        s = NotareStudent(0,0,0)
 
-#         nota, trecut, bursa, categorie = s.evaluare_student(70, 80, 90)
+        nota, trecut, bursa, categorie = s.evaluare_student(70, 80, 90)
 
-#         self.assertEqual(nota, 74.0)
-#         self.assertTrue(trecut)
-#         self.assertFalse(bursa)
-#         self.assertEqual(categorie, "Foarte bine")
+        self.assertEqual(nota, 74.0)
+        self.assertTrue(trecut)
+        self.assertFalse(bursa)
+        self.assertEqual(categorie, "Foarte bine")
 
-#     def test_clase_echivalenta_C1(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(80, 80, 80)
-#         self.assertTrue(trecut)
+    def test_clase_echivalenta_C1(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(80, 80, 80)
+        self.assertTrue(trecut)
 
-#     def test_clase_echivalenta_C2(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(80, 80, 40)
-#         self.assertFalse(trecut)
+    def test_clase_echivalenta_C2(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(80, 80, 40)
+        self.assertFalse(trecut)
 
-#     def test_clase_echivalenta_C3(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(40, 40, 80)
-#         self.assertFalse(trecut)
+    def test_clase_echivalenta_C3(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(40, 40, 80)
+        self.assertFalse(trecut)
 
-#     def test_clase_echivalenta_C4(self):
-#         s = NotareStudent(0,0,0)
-#         with self.assertRaises(ValueError):
-#             s.evaluare_student(-10, 80, 80)
+    def test_clase_echivalenta_C4(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(-10, 80, 80)
             
 
-#     def test_B1_invalid_sub(self):
-#         s = NotareStudent(0,0,0)
-#         with self.assertRaises(ValueError):
-#             s.evaluare_student(-1, 50, 50)
+    def test_B1_invalid_sub(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(-1, 50, 50)
 
-#     def test_B2_limita_0(self):
-#         s = NotareStudent(0,0,0)
-#         nota, _, _, _ = s.evaluare_student(0, 50, 50)
-#         self.assertEqual(nota, 0.6*0 + 0.4*50)
+    def test_B2_limita_0(self):
+        s = NotareStudent(0,0,0)
+        nota, _, _, _ = s.evaluare_student(0, 50, 50)
+        self.assertEqual(nota, 0.6*0 + 0.4*50)
 
-#     def test_B3_limita_100(self):
-#         s = NotareStudent(0,0,0)
-#         nota, _, _, _ = s.evaluare_student(100, 50, 50)
-#         self.assertEqual(nota, 0.6*100 + 0.4*50)
+    def test_B3_limita_100(self):
+        s = NotareStudent(0,0,0)
+        nota, _, _, _ = s.evaluare_student(100, 50, 50)
+        self.assertEqual(nota, 0.6*100 + 0.4*50)
 
-#     def test_B4_peste_limita(self):
-#         s = NotareStudent(0,0,0)
-#         with self.assertRaises(ValueError):
-#             s.evaluare_student(101, 50, 50)
+    def test_B4_peste_limita(self):
+        s = NotareStudent(0,0,0)
+        with self.assertRaises(ValueError):
+            s.evaluare_student(101, 50, 50)
 
-#     def test_B5_prezenta_49(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(80, 80, 49)
-#         self.assertFalse(trecut)
+    def test_B5_prezenta_49(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(80, 80, 49)
+        self.assertFalse(trecut)
 
-#     def test_B6_prezenta_50(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(80, 80, 50)
-#         self.assertTrue(trecut)
+    def test_B6_prezenta_50(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(80, 80, 50)
+        self.assertTrue(trecut)
 
-#     def test_B7_prezenta_51(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(80, 80, 51)
-#         self.assertTrue(trecut)
+    def test_B7_prezenta_51(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(80, 80, 51)
+        self.assertTrue(trecut)
 
-#     def test_B8_nota_sub_50(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(49, 49, 50)
-#         self.assertFalse(trecut)
+    def test_B8_nota_sub_50(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(49, 49, 50)
+        self.assertFalse(trecut)
 
-#     def test_B9_nota_50(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(50, 50, 50)
-#         self.assertTrue(trecut)
+    def test_B9_nota_50(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(50, 50, 50)
+        self.assertTrue(trecut)
 
-#     def test_B10_nota_51(self):
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(51, 51, 50)
-#         self.assertTrue(trecut)
+    def test_B10_nota_51(self):
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(51, 51, 50)
+        self.assertTrue(trecut)
 
-#     def test_B11_bursa_prag(self):
-#         s = NotareStudent(0,0,0)
-#         _, _, bursa, _ = s.evaluare_student(85, 85, 80)
-#         self.assertTrue(bursa)
+    def test_B11_bursa_prag(self):
+        s = NotareStudent(0,0,0)
+        _, _, bursa, _ = s.evaluare_student(85, 85, 80)
+        self.assertTrue(bursa)
 
-#     def test_B12_bursa_sub_nota(self):
-#         s = NotareStudent(0,0,0)
-#         _, _, bursa, _ = s.evaluare_student(84, 85, 80)
-#         self.assertFalse(bursa)
+    def test_B12_bursa_sub_nota(self):
+        s = NotareStudent(0,0,0)
+        _, _, bursa, _ = s.evaluare_student(84, 85, 80)
+        self.assertFalse(bursa)
 
-#     def test_B13_bursa_sub_prezenta(self):
-#         s = NotareStudent(0,0,0)
-#         _, _, bursa, _ = s.evaluare_student(90, 85, 79)
-#         self.assertFalse(bursa)
+    def test_B13_bursa_sub_prezenta(self):
+        s = NotareStudent(0,0,0)
+        _, _, bursa, _ = s.evaluare_student(90, 85, 79)
+        self.assertFalse(bursa)
 
 
-#     def test_mutant_prezenta_0(self): # Job 36
-#         s = NotareStudent(0,0,0)
-#         _, trecut, _, _ = s.evaluare_student(50, 50, 0)
-#         self.assertEqual(trecut, False)
+    def test_mutant_prezenta_0(self): # Job 36
+        s = NotareStudent(0,0,0)
+        _, trecut, _, _ = s.evaluare_student(50, 50, 0)
+        self.assertEqual(trecut, False)
 
-#     def test_mutant_categorie_50(self): # Job 38
-#         s = NotareStudent(0,0,0)
-#         _, _, _, categorie = s.evaluare_student(50, 50, 50)
-#         self.assertEqual(categorie, "Bine")
+    def test_mutant_categorie_50(self): # Job 38
+        s = NotareStudent(0,0,0)
+        _, _, _, categorie = s.evaluare_student(50, 50, 50)
+        self.assertEqual(categorie, "Bine")
 
 
 class TestConditie(unittest.TestCase):
@@ -372,19 +372,37 @@ class TestConditie(unittest.TestCase):
 
 class TestCircuiteIndependente(unittest.TestCase):
 
-    def test_circuit_while_nota_examen_invalida(self):
+    def test_circuit_while_nota_examen_invalida_sub_0(self):
         s = NotareStudent(0,0,0)
 
         with self.assertRaises(ValueError):
             s.evaluare_student(-1, 80, 80)
             
-    def test_circuit_while_nota_tema_invalida(self):
+    def test_circuit_while_nota_examen_invalida_peste_100(self):
+        s = NotareStudent(0,0,0)
+
+        with self.assertRaises(ValueError):
+            s.evaluare_student(101, 80, 80)
+            
+    def test_circuit_while_nota_tema_invalida_sub_0(self):
         s = NotareStudent(0,0,0)
 
         with self.assertRaises(ValueError):
             s.evaluare_student(0, -1, 80)
+            
+    def test_circuit_while_nota_tema_invalida_peste_100(self):
+        s = NotareStudent(0,0,0)
 
-    def test_circuit_while_prezenta_invalida(self):
+        with self.assertRaises(ValueError):
+            s.evaluare_student(0, 101, 80)
+
+    def test_circuit_while_prezenta_invalida_sub_0(self):
+        s = NotareStudent(0,0,0)
+
+        with self.assertRaises(ValueError):
+            s.evaluare_student(80, 80, -1)
+            
+    def test_circuit_while_prezenta_invalida_peste_100(self):
         s = NotareStudent(0,0,0)
 
         with self.assertRaises(ValueError):

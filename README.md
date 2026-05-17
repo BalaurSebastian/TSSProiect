@@ -234,7 +234,7 @@ Fiecare decizie (`if` / `while`) este evaluată atât pe `True` cât și pe `Fal
 
 | Decizie | True (test) | False (test) |
 |--------|------------|-------------|
-| nota_examen < 0 sau >100 | test_circuit_while_nota_examen_invalida | test_circuit_trecut |
+| nota_examen < 0 sau >100 | test_circuit_while_nota_examen_invalida_sub_0 | test_circuit_trecut |
 | nota_tema < 0 sau >100 | test_conditie_invalid_nota_tema | test_circuit_trecut |
 | prezenta < 0 sau >100 | test_conditie_invalid_prezenta | test_circuit_trecut |
 | i < 1 (while) | toate testele valide | ieșirea din while |
@@ -254,9 +254,12 @@ Fiecare condiție individuală este evaluată atât pe `True` cât și pe `False
 
 | Condiție | True (test) | False (test) |
 |----------|------------|-------------|
-| nota_examen < 0 | test_circuit_while_nota_examen_invalida | test_circuit_trecut |
-| nota_tema < 0 | test_circuit_while_nota_tema_invalida | test_circuit_trecut |
-| prezenta > 100 | test_circuit_while_prezenta_invalida | test_circuit_trecut |
+| nota_examen < 0 | test_circuit_while_nota_examen_invalida_sub_0 | test_circuit_trecut |
+| nota_examen > 100 | test_circuit_while_nota_examen_invalida_peste_100 | test_circuit_trecut |
+| nota_tema < 0 | test_circuit_while_nota_tema_invalida_sub_0 | test_circuit_trecut |
+| nota_tema > 100 | test_circuit_while_nota_tema_invalida_peste_100 | test_circuit_trecut |
+| prezenta < 0 | test_circuit_while_prezenta_invalida_sub_0 | test_circuit_trecut |
+| prezenta > 100 | test_circuit_while_prezenta_invalida_peste_100 | test_circuit_trecut |
 | i < 1 | toate testele valide | ieșirea din while |
 | prezenta < 50 | test_circuit_prezenta_mica | test_circuit_trecut |
 | nota_finala >= 50 | test_circuit_trecut | test_circuit_trecut |
