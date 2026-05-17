@@ -324,40 +324,41 @@ Pasii pe care i-am urmat pentru a realiza testarea prin mutatii [1]:
 
 ### Analiza raportului creat de generatorul de mutanti
 
-Generatorul a creat 143 de mutanti, dintre care 24 au supravietuit.
+Generatorul a creat 123 de mutanti, dintre care 13 au supravietuit.
 
-<img width="399" height="246" alt="image" src="https://github.com/user-attachments/assets/424420be-ac1a-4cf4-9e80-459ecc0f5490" />
+<img width="381" height="228" alt="image" src="https://github.com/user-attachments/assets/aac58d7b-12e4-4c66-b042-e27cf3e57884" />
 
 ---
 
-Am adaugat inca doua teste pentru a omori 2 dintre mutanti. Dupa adaugarea acestor teste au mai fost omorati inca 4 mutanti, ramanand doar 18. Cele doua teste au tintit mutantii 36 si 38.
+Am adaugat inca doua teste care tintesc 2 dintre mutanti. Dupa adaugarea acestor teste au mai fost omorati inca 5 mutanti, ramanand doar 8 in viata. Cele doua teste au tintit mutantii 37 si 50.
 
-<img width="402" height="246" alt="image" src="https://github.com/user-attachments/assets/98245df5-b4be-4810-81a1-2fbeda642acf" />
+<img width="372" height="228" alt="image" src="https://github.com/user-attachments/assets/d02d1174-fd7d-434d-8827-1c12549f4ca5" />
 
-#### Mutantul 36
+
+#### Mutantul 37
 
 ```python
 --- mutation diff ---
 --- aClasaTestare.py
 +++ bClasaTestare.py
-@@ -10,7 +10,7 @@
-             raise ValueError("Invalid input")
-         if nota_tema < 0 or nota_tema > 100:
-             raise ValueError("Invalid input")
--        if prezenta < 0 or prezenta > 100:
-+        if prezenta == 0 or prezenta > 100:
-             raise ValueError("Invalid input")
- 
-         # calcul
+@@ -26,7 +26,7 @@
+         else:
+             eligibil_bursa = False 
+         # categorie
+-        if nota_finala < 50: 
++        if nota_finala == 50: 
+             categorie = "Picat" 
+         elif nota_finala < 70: 
+             categorie = "Bine" 
 ```
 
 Testul adaugat
 
 ```python
-def test_mutant_prezenta_0(self): # Job 36
-    s = NotareStudent(0,0,0)
-    _, trecut, _, _ = s.evaluare_student(50, 50, 0)
-    self.assertEqual(trecut, False)
+def test_mutant_categorie_nota_finala_egala_cu_50(self): # Job 37
+   s = NotareStudent(0,0,0)
+   _, _, _, categorie = s.evaluare_student(50, 50, 50)
+   self.assertEqual(categorie, "Bine")
 ```
 
 #### Mutantul 38
@@ -366,24 +367,24 @@ def test_mutant_prezenta_0(self): # Job 36
 --- mutation diff ---
 --- aClasaTestare.py
 +++ bClasaTestare.py
-@@ -31,7 +31,7 @@
-            eligibil_bursa = False
-
-        # categorie
--        if nota_finala < 50:
-+        if nota_finala == 50:
-            categorie = "Picat"
-        elif nota_finala < 70:
-            categorie = "Bine"
+@@ -28,7 +28,7 @@
+         # categorie
+         if nota_finala < 50: 
+             categorie = "Picat" 
+-        elif nota_finala < 70: 
++        elif nota_finala <= 70: 
+             categorie = "Bine" 
+         elif nota_finala < 90: 
+             categorie = "Foarte bine" 
 ```
 
 Testul adaugat
 
 ```python
-def test_mutant_categorie_50(self): # Job 38
-    s = NotareStudent(0,0,0)
-    _, _, _, categorie = s.evaluare_student(50, 50, 50)
-    self.assertEqual(categorie, "Bine")
+def test_mutant_categorie_nota_finala_mai_mica_sau_egala_cu_70(self): # Job 50
+   s = NotareStudent(0,0,0)
+   _, _, _, categorie = s.evaluare_student(70, 70, 50)
+   self.assertEqual(categorie, "Foarte bine")
 ```
 
 ## Prezentare Powerpoint
