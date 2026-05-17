@@ -289,7 +289,8 @@ Pe baza grafului, fiecare circuit este acoperit de cel puțin un test:
 ---
 ### Raport Acoperire 
 
-<img width="841" height="460" alt="image" src="https://github.com/user-attachments/assets/e6d46ce5-25c5-45bb-b9a7-7861768eeed9" />
+<img width="842" height="437" alt="image" src="https://github.com/user-attachments/assets/f1bbdab1-a315-4650-84d1-2b3ffbc8e41c" />
+
 
 ## Testarea prin mutatii
 
