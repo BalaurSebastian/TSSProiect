@@ -13,7 +13,7 @@
 Programul implementeaza un sistem de evaluare al unui student pe baza mai multor date de intrare, nota pe care studentul a luat-o la examen, nota pe care a luat-o la tema si numarul de ore la care acesta a fost prezent. Dupa validarea datelor si realizarea mai multor calcule, programul afiseaza nota finala, decide daca studentul a trecut sau nu, daca este eligibil pentru bursa sau nu si in ce categorie i se incadreaza nota, de la Picat la Excelent.
 ## Structura Proiectului
 
-<img width="642" height="906" alt="image" src="https://github.com/user-attachments/assets/333c2c73-1978-40e5-b760-2ca2f6c7f2e1" />
+<img width="803" height="900" alt="image" src="https://github.com/user-attachments/assets/26582f53-6256-419a-bc68-d33a53ae42d6" />
 
 
 ## 1. Partitionare in clase de echivalenta (Equivalence Partitioning)
