@@ -1,47 +1,39 @@
 class NotareStudent:
     def __init__(self, nota_examen, nota_tema, prezenta):
-        self.nota_examen = nota_examen        # 0 - 100
-        self.nota_tema = nota_tema  # 0 - 100
-        self.prezenta = prezenta        # 0 - 100 (%)
+        self.nota_examen = nota_examen
+        self.nota_tema = nota_tema
+        self.prezenta = prezenta 
 
     def evaluare_student(self, nota_examen, nota_tema, prezenta):
         
         valori = [nota_examen, nota_tema, prezenta]
         i = 0
         
-        # validare
         while i < len(valori):
             if valori[i] < 0 or valori[i] > 100:
                 raise ValueError("Invalid input")
             i += 1
-
-
-        # calcul
+            
         nota_finala = 0.6 * nota_examen + 0.4 * nota_tema
-
-        # trecut
         if prezenta < 50:
             trecut = False
         elif nota_finala >= 50:
             trecut = True
         else:
-            trecut = False
-
-        # bursa
-        if nota_finala >= 85 and prezenta >= 80:
-            eligibil_bursa = True
+            trecut = False 
+        if nota_finala >= 85 and prezenta >= 80: 
+            eligibil_bursa = True 
         else:
-            eligibil_bursa = False
-
+            eligibil_bursa = False 
         # categorie
-        if nota_finala < 50:
-            categorie = "Picat"
-        elif nota_finala < 70:
-            categorie = "Bine"
-        elif nota_finala < 90:
-            categorie = "Foarte bine"
+        if nota_finala < 50: 
+            categorie = "Picat" 
+        elif nota_finala < 70: 
+            categorie = "Bine" 
+        elif nota_finala < 90: 
+            categorie = "Foarte bine" 
         else:
-            categorie = "Excelent"
+            categorie = "Excelent" 
 
         return nota_finala, trecut, eligibil_bursa, categorie
     # def nota_finala(self):
